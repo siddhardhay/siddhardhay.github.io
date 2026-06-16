@@ -8,7 +8,7 @@
 	</head>
 	<body style="font-family:'Titillium Web', sans-serif; margin:0; background:#f9fafb;">
 		<div style="max-width:1024px; margin:0 auto;">
-			<nav style="background:#fff; border-bottom:1px solid #e5e7eb; padding:10px 16px; position:sticky; top:0; z-index:50;">
+			<nav style="background:#fff;  padding:10px 16px; position:sticky; top:0; z-index:50;">
 				<div style="display:flex; justify-content:space-between; align-items:center; max-width:1024px; margin:0 auto;">
 					<a href="./index.html" style="text-decoration:none;">
 						<span style="font-size:1.5rem; font-weight:600; color:#111827;">Siddhardha Yanamadala</span>
@@ -16,15 +16,60 @@
 					<ul style="display:flex; flex-direction:row; gap:32px; list-style:none; margin:0; padding:0;">
 						<li><a href="./index.html" style="text-decoration:none; color:#6b7280; font-size:1.125rem;">Home</a></li>
 						<li><a href="./cv.html" style="text-decoration:none; color:#eab308; font-size:1.125rem; font-weight:600;">CV</a></li>
+					<li><button id="theme-btn" onclick="toggleTheme()" title="Toggle theme" style="background:none; border:none; cursor:pointer; font-size:1.3rem; padding:4px 6px; border-radius:6px;">🌙</button></li>
 					</ul>
 				</div>
 			</nav>
 			<div style="display:flex; justify-content:center; align-items:center; height:60vh;">
 				<div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1); padding:48px 64px; text-align:center;">
 					<h2 style="font-size:1.5rem; font-weight:700; color:#111827; margin-bottom:16px;">Curriculum Vitae</h2>
-					<p style="color:#6b7280; font-size:1.125rem;">Will update soon.</p>
+					<p style="color:#6b7280; font-size:1.125rem;">Revamping... Coming Soon!</p>
 				</div>
 			</div>
 		</div>
-	</body>
+	<script>
+    function applyTheme(dark) {
+      const body = document.body;
+      const nav = document.querySelector('nav');
+      const btn = document.getElementById('theme-btn');
+      const navName = document.querySelector('.nav-name');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const boxes = document.querySelectorAll('[data-box="true"]');
+
+      if (dark) {
+        body.style.backgroundColor = '#111827';
+        body.style.color = '#d1d5db';
+        nav.style.background = '#1f2937';
+        nav.style.borderColor = '#374151';
+        if (navName) navName.style.color = '#f9fafb';
+        navLinks.forEach(el => el.style.color = '#d1d5db');
+        boxes.forEach(el => { el.style.background = '#1f2937'; el.style.borderColor = '#374151'; });
+        document.querySelectorAll('h1, h2, h2, p').forEach(el => el.style.color = '#d1d5db');
+        if (btn) { btn.textContent = '☀️'; btn.style.color = '#f9fafb'; }
+      } else {
+        body.style.backgroundColor = '#ffffff';
+        body.style.color = '#111827';
+        nav.style.background = '#ffffff';
+        nav.style.borderColor = '#e5e7eb';
+        if (navName) navName.style.color = '#111827';
+        navLinks.forEach(el => el.style.color = '#374151');
+        boxes.forEach(el => { el.style.background = '#ffffff'; el.style.borderColor = '#e5e7eb'; });
+        document.querySelectorAll('h1, h2').forEach(el => el.style.color = '#111827');
+        document.querySelectorAll('p').forEach(el => el.style.color = '#374151');
+        if (btn) { btn.textContent = '🌙'; btn.style.color = '#111827'; }
+      }
+    }
+
+    let isDark = false;
+    function toggleTheme() {
+      isDark = !isDark;
+      applyTheme(isDark);
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    isDark = prefersDark.matches;
+    applyTheme(isDark);
+    prefersDark.addEventListener('change', e => { isDark = e.matches; applyTheme(isDark); });
+  </script>
+</body>
 </html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coffee Places - Siddhardha Yanamadala</title>
+  <link rel="icon" href="./profile_orig.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Titillium Web', sans-serif; background-color: #ffffff; color: #111827; }
+    a { color: #3b82f6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { background: #ffffff; padding: 10px 20px; position: sticky; top: 0; z-index: 50; }
+    .nav-inner { max-width: 1024px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-name { font-size: 1.4rem; font-weight: 600; color: #111827; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 1.05rem; color: #374151; text-decoration: none; }
+    .main { max-width: 800px; margin: 36px auto; padding: 0 20px 40px; }
+    .card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 36px; margin-bottom: 24px; }
+    h1 { font-size: 1.75rem; font-weight: 700; color: #111827; margin-bottom: 6px; }
+    .city-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; margin-top: 28px; }
+    .city-header:first-of-type { margin-top: 0; }
+    .city-title { font-size: 1.3rem; font-weight: 600; color: #111827; }
+    .map-toggle { background: none; border: 1px solid #d1d5db; border-radius: 6px; padding: 3px 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; font-family: 'Titillium Web', sans-serif; }
+    .map-toggle:hover { background: #f3f4f6; }
+    .map-wrap { margin-bottom: 18px; }
+    #seattle-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
+    .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+    .region-note { font-style: italic; color: #6b7280; font-size: 0.93rem; margin-bottom: 18px; line-height: 1.7; }
+    .sub-city { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 20px 0 8px; }
+    .place-list { padding-left: 20px; margin-bottom: 12px; }
+    .place-list li { line-height: 1.85; color: #374151; margin-bottom: 4px; }
+    p { line-height: 1.85; color: #374151; margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    .subtitle { color: #6b7280; font-size: 0.95rem; margin-bottom: 28px; }
+    .dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: middle; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="./index.html" class="nav-name">Siddhardha Yanamadala</a>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./cv.html">CV</a></li>
+        <li><button id="theme-btn" onclick="toggleTheme()" title="Toggle theme" style="background:none; border:none; cursor:pointer; font-size:1.3rem; padding:4px 6px; border-radius:6px;">🌙</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="card" data-box="true">
+      <h1>Good Coffee Places ☕</h1>
+      <p class="subtitle">A curated list of coffee places I've discovered and enjoyed.</p>
+
+      <!-- Seattle -->
+      <div class="city-header">
+        <span class="city-title">Seattle ☕︎</span>
+        <button class="map-toggle" onclick="toggleMap()">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="seattle-map">
+        <div id="seattle-leaflet"></div>
+      </div>
+
+      <p><span class="dot" style="background:#e74c3c;"></span><a href="https://espressovivace.com/" target="_blank">Espresso Vivace</a> has a founder who <a href="https://en.wikipedia.org/wiki/Espresso_Vivace" target="_blank">apparently invented latte art.</a> This has been my first stop after multiple red eye flights.</p>
+
+      <p><span class="dot" style="background:#27ae60;"></span><a href="https://florarestaurantgroup.com/restaurant/floret-seatac/" target="_blank">Floret</a>, in SeaTac Airport near the A gates, which has Stumptown beans and surprisingly good coffee for an airport. It's also a great option for vegetarian food at the airport.</p>
+
+      <p>In Bellevue, <span class="dot" style="background:#f39c12;"></span><a href="https://thirdculturecoffee.com/" target="_blank">Third Culture Coffee</a> is a good option, also with Indian-inspired options like filter coffee and chai.</p>
+
+      <p>In Renton, <span class="dot" style="background:#8e44ad;"></span><a href="https://www.boonboonacoffee.com/" target="_blank">Boon Boona Coffee</a>, focusing on Ethiopian and Rwandan coffee, is the best option. The cappuccino is not great; I recommend a cortado instead.</p>
+
+      <p><span class="dot" style="background:#2980b9;"></span><a href="https://5stonescoffeeco.com/" target="_blank">Five Stones</a> in Redmond will make you a cappuccino freddo, which is not something you usually see.</p>
+
+      <p><span class="dot" style="background:#16a085;"></span><a href="https://www.adasbooks.com/" target="_blank">Ada's Technical Books &amp; Cafe</a> (also in Capitol Hill) and <span class="dot" style="background:#d35400;"></span><a href="https://santocoffee.co/" target="_blank">Santo</a> (a bit north of the U-District) are good. <span class="dot" style="background:#c0392b;"></span><a href="https://www.victrolacoffee.com/" target="_blank">Victrola</a> is also recommended.</p>
+
+      <hr class="divider">
+
+      <!-- India -->
+      <div class="city-header">
+        <span class="city-title">India ☕︎</span>
+        <button class="map-toggle" onclick="toggleIndiaMap()">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="india-map">
+        <div id="india-leaflet"></div>
+      </div>
+
+      <p class="region-note">Note: Indians mostly drink filter coffee. You can get this basically anywhere, so this list focuses on fancier and more westernized (i.e., cappuccino) places.</p>
+
+      <p class="sub-city">Chennai</p>
+      <ul class="place-list">
+        <li><span class="dot" style="background:#2ecc71;"></span><a href="https://www.thebackyardclan.com/" target="_blank">Backyard</a> in Gandhi Nagar is a co-working space which includes unlimited filter coffee and chai.</li>
+        <li><span class="dot" style="background:#e67e22;"></span><a href="https://beachvillecoffee.com/" target="_blank">Beachville Coffee</a> in Alwarpet is a specialty coffee roastery and cafe.</li>
+      </ul>
+
+      <p class="sub-city">Mumbai</p>
+      <ul class="place-list">
+        <li><span class="dot" style="background:#9b59b6;"></span><a href="https://kcroasters.com/" target="_blank">KC Roasters</a> in Bandra is the best cappuccino I have had in Mumbai.</li>
+        <li><span class="dot" style="background:#3498db;"></span><a href="https://bluetokaicoffee.com/" target="_blank">Blue Tokai</a> is a good default option, with cafes in a few cities around India. There are six Mumbai locations.</li>
+        <li><span class="dot" style="background:#e74c3c;"></span>In Kala Ghoda, <a href="https://kala-ghoda-cafe.weeblyte.com/" target="_blank">Kala Ghoda Cafe</a> has good lunch options as well as coffee.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Color-coded markers per coffee shop chain
+    const chains = [
+      {
+        name: "Espresso Vivace", color: "#e74c3c", url: "https://espressovivace.com/",
+        locations: [
+          { label: "Capitol Hill (Roasteria)", lat: 47.6238, lng: -122.3206 },
+          { label: "South Lake Union (Alley 24)", lat: 47.6231, lng: -122.3348 }
+        ]
+      },
+      {
+        name: "Floret", color: "#27ae60", url: "https://florarestaurantgroup.com/restaurant/floret-seatac/",
+        locations: [
+          { label: "SeaTac Airport", lat: 47.4502, lng: -122.3018 }
+        ]
+      },
+      {
+        name: "Third Culture Coffee", color: "#f39c12", url: "https://thirdculturecoffee.com/",
+        locations: [
+          { label: "Bellevue", lat: 47.6161, lng: -122.1973 }
+        ]
+      },
+      {
+        name: "Boon Boona Coffee", color: "#8e44ad", url: "https://www.boonboonacoffee.com/",
+        locations: [
+          { label: "Capitol Hill", lat: 47.6094, lng: -122.3089 },
+          { label: "Renton",       lat: 47.4799, lng: -122.2168 },
+          { label: "U-District",   lat: 47.6603, lng: -122.3140 },
+          { label: "Redmond (Microsoft Campus)", lat: 47.6548, lng: -122.1319 }
+        ]
+      },
+      {
+        name: "Five Stones Coffee", color: "#2980b9", url: "https://5stonescoffeeco.com/",
+        locations: [
+          { label: "Redmond",  lat: 47.6768, lng: -122.1291 },
+          { label: "Bellevue", lat: 47.5840, lng: -122.1360 },
+          { label: "Kirkland", lat: 47.6770, lng: -122.2068 }
+        ]
+      },
+      {
+        name: "Ada's Technical Books & Cafe", color: "#16a085", url: "https://www.adasbooks.com/",
+        locations: [
+          { label: "Capitol Hill", lat: 47.6227, lng: -122.3128 }
+        ]
+      },
+      {
+        name: "Santo Coffee Co.", color: "#d35400", url: "https://santocoffee.co/",
+        locations: [
+          { label: "Roosevelt", lat: 47.6757, lng: -122.3133 }
+        ]
+      },
+      {
+        name: "Victrola Coffee", color: "#c0392b", url: "https://www.victrolacoffee.com/",
+        locations: [
+          { label: "Capitol Hill – Pike St",  lat: 47.6145, lng: -122.3204 },
+          { label: "Capitol Hill – 15th Ave", lat: 47.6228, lng: -122.3127 },
+          { label: "Downtown (3rd & Pine)",   lat: 47.6088, lng: -122.3393 },
+          { label: "Ballard",                 lat: 47.6683, lng: -122.3866 },
+          { label: "Beacon Hill",             lat: 47.5634, lng: -122.3138 }
+        ]
+      }
+    ];
+
+    const map = L.map('seattle-leaflet').setView([47.58, -122.28], 10);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    chains.forEach(chain => {
+      chain.locations.forEach(loc => {
+        const marker = L.circleMarker([loc.lat, loc.lng], {
+          radius: 8, color: chain.color, fillColor: chain.color,
+          fillOpacity: 0.85, weight: 2
+        }).addTo(map);
+        marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
+          direction: 'top', offset: [0, -6]
+        });
+        marker.bindPopup(`<a href="${chain.url}" target="_blank"><strong>${chain.name}</strong></a><br>${loc.label}`);
+      });
+    });
+
+    function toggleMap() {
+      const wrap = document.getElementById('seattle-map');
+      const btns = document.querySelectorAll('.map-toggle');
+      const hidden = wrap.style.display === 'none';
+      wrap.style.display = hidden ? 'block' : 'none';
+      btns[0].textContent = hidden ? 'Hide Map' : 'Show Map';
+      if (hidden) map.invalidateSize();
+    }
+
+    // India map
+    const indiaChains = [
+      {
+        name: "Backyard", color: "#2ecc71", url: "https://www.thebackyardclan.com/",
+        locations: [
+          { label: "Gandhi Nagar, Chennai", lat: 13.0068, lng: 80.2574 }
+        ]
+      },
+      {
+        name: "Beachville Coffee", color: "#e67e22", url: "https://beachvillecoffee.com/",
+        locations: [
+          { label: "Alwarpet, Chennai", lat: 13.0367, lng: 80.2495 }
+        ]
+      },
+      {
+        name: "KC Roasters", color: "#9b59b6", url: "https://kcroasters.com/",
+        locations: [
+          { label: "Bandra, Mumbai", lat: 19.0591, lng: 72.8320 }
+        ]
+      },
+      {
+        name: "Blue Tokai", color: "#3498db", url: "https://bluetokaicoffee.com/",
+        locations: [
+          { label: "Khar West",          lat: 19.0660, lng: 72.8370 },
+          { label: "Lower Parel",        lat: 19.0003, lng: 72.8294 },
+          { label: "Prabhadevi",         lat: 19.0127, lng: 72.8311 },
+          { label: "Andheri East",       lat: 19.1197, lng: 72.8781 },
+          { label: "Andheri West",       lat: 19.1300, lng: 72.8193 },
+          { label: "Fort",               lat: 18.9331, lng: 72.8335 },
+          { label: "Bandra West",        lat: 19.0544, lng: 72.8392 },
+          { label: "Kurla (Phoenix)",    lat: 19.0723, lng: 72.8916 }
+        ]
+      },
+      {
+        name: "Kala Ghoda Cafe", color: "#e74c3c", url: "https://kala-ghoda-cafe.weeblyte.com/",
+        locations: [
+          { label: "Kala Ghoda, Fort, Mumbai", lat: 18.9307, lng: 72.8331 }
+        ]
+      }
+    ];
+
+    const indiaMap = L.map('india-leaflet').setView([19.5, 77.0], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(indiaMap);
+
+    indiaChains.forEach(chain => {
+      chain.locations.forEach(loc => {
+        const marker = L.circleMarker([loc.lat, loc.lng], {
+          radius: 8, color: chain.color, fillColor: chain.color,
+          fillOpacity: 0.85, weight: 2
+        }).addTo(indiaMap);
+        marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
+          direction: 'top', offset: [0, -6]
+        });
+        marker.bindPopup(`<a href="${chain.url}" target="_blank"><strong>${chain.name}</strong></a><br>${loc.label}`);
+      });
+    });
+
+    function toggleIndiaMap() {
+      const wrap = document.getElementById('india-map');
+      const btns = document.querySelectorAll('.map-toggle');
+      const hidden = wrap.style.display === 'none';
+      wrap.style.display = hidden ? 'block' : 'none';
+      btns[1].textContent = hidden ? 'Hide Map' : 'Show Map';
+      if (hidden) indiaMap.invalidateSize();
+    }
+
+    function applyTheme(dark) {
+      const body = document.body;
+      const nav = document.querySelector('nav');
+      const btn = document.getElementById('theme-btn');
+      const navName = document.querySelector('.nav-name');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const boxes = document.querySelectorAll('[data-box="true"]');
+      const toggleBtns = document.querySelectorAll('.map-toggle');
+      const cityTitles = document.querySelectorAll('.city-title');
+
+      if (dark) {
+        body.style.backgroundColor = '#111827';
+        body.style.color = '#d1d5db';
+        nav.style.background = '#1f2937';
+        nav.style.borderColor = '#374151';
+        if (navName) navName.style.color = '#f9fafb';
+        navLinks.forEach(el => el.style.color = '#d1d5db');
+        boxes.forEach(el => { el.style.background = '#1f2937'; el.style.borderColor = '#374151'; });
+        document.querySelectorAll('h1, p').forEach(el => el.style.color = '#d1d5db');
+        document.querySelectorAll('.sub-city').forEach(el => el.style.color = '#f9fafb');
+        document.querySelectorAll('.place-list li').forEach(el => el.style.color = '#d1d5db');
+        document.querySelector('.divider').style.borderColor = '#374151';
+        cityTitles.forEach(el => el.style.color = '#f9fafb');
+        toggleBtns.forEach(el => { el.style.borderColor = '#4b5563'; el.style.color = '#9ca3af'; });
+        document.querySelector('.subtitle').style.color = '#9ca3af';
+        document.querySelector('.region-note').style.color = '#9ca3af';
+        if (btn) { btn.textContent = '☀️'; btn.style.color = '#f9fafb'; }
+      } else {
+        body.style.backgroundColor = '#ffffff';
+        body.style.color = '#111827';
+        nav.style.background = '#ffffff';
+        nav.style.borderColor = '#e5e7eb';
+        if (navName) navName.style.color = '#111827';
+        navLinks.forEach(el => el.style.color = '#374151');
+        boxes.forEach(el => { el.style.background = '#ffffff'; el.style.borderColor = '#e5e7eb'; });
+        document.querySelectorAll('h1').forEach(el => el.style.color = '#111827');
+        document.querySelectorAll('p').forEach(el => el.style.color = '#374151');
+        document.querySelectorAll('.sub-city').forEach(el => el.style.color = '#111827');
+        document.querySelectorAll('.place-list li').forEach(el => el.style.color = '#374151');
+        document.querySelector('.divider').style.borderColor = '#e5e7eb';
+        cityTitles.forEach(el => el.style.color = '#111827');
+        toggleBtns.forEach(el => { el.style.borderColor = '#d1d5db'; el.style.color = '#6b7280'; });
+        document.querySelector('.subtitle').style.color = '#6b7280';
+        document.querySelector('.region-note').style.color = '#6b7280';
+        if (btn) { btn.textContent = '🌙'; btn.style.color = '#111827'; }
+      }
+    }
+
+    let isDark = false;
+    function toggleTheme() { isDark = !isDark; applyTheme(isDark); }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    isDark = prefersDark.matches;
+    applyTheme(isDark);
+    prefersDark.addEventListener('change', e => { isDark = e.matches; applyTheme(isDark); });
+  </script>
+
+</body>
+</html>
