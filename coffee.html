@@ -59,6 +59,8 @@
       <h1>Good Coffee Places ☕</h1>
       <p class="subtitle">A curated list of coffee places I've discovered and enjoyed.</p>
 
+      <p class="region-note">I like coffee. This page primarily has recommendations for small and independent coffeeshops; if instead you want inexpensive or mass-market coffee, it's not hard to find. For pedants, this page additionally contains recommendations for non-coffee items. There are many medium-to-large-ish chains, with varying levels of consistency and quality, for example La Colombe or Bluestone Lane. This line between "chain" and "small and independent but with multiple locations" is nebulous; I make no promises of semantic consistency.</p>
+
       <!-- Seattle -->
       <div class="city-header">
         <span class="city-title">Seattle ☕︎</span>
@@ -294,7 +296,7 @@
         cityTitles.forEach(el => el.style.color = '#f9fafb');
         toggleBtns.forEach(el => { el.style.borderColor = '#4b5563'; el.style.color = '#9ca3af'; });
         document.querySelector('.subtitle').style.color = '#9ca3af';
-        document.querySelector('.region-note').style.color = '#9ca3af';
+        document.querySelectorAll('.region-note').forEach(el => el.style.color = '#9ca3af');
         if (btn) { btn.textContent = '☀️'; btn.style.color = '#f9fafb'; }
       } else {
         body.style.backgroundColor = '#ffffff';
@@ -312,7 +314,7 @@
         cityTitles.forEach(el => el.style.color = '#111827');
         toggleBtns.forEach(el => { el.style.borderColor = '#d1d5db'; el.style.color = '#6b7280'; });
         document.querySelector('.subtitle').style.color = '#6b7280';
-        document.querySelector('.region-note').style.color = '#6b7280';
+        document.querySelectorAll('.region-note').forEach(el => el.style.color = '#6b7280');
         if (btn) { btn.textContent = '🌙'; btn.style.color = '#111827'; }
       }
     }
