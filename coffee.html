@@ -64,7 +64,7 @@
       <!-- Seattle -->
       <div class="city-header">
         <span class="city-title">Seattle ☕︎</span>
-        <button class="map-toggle" onclick="toggleMap()">Hide Map</button>
+        <button class="map-toggle" onclick="toggleMapSection('seattle', this)">Hide Map</button>
       </div>
       <div class="map-wrap" id="seattle-map">
         <div id="seattle-leaflet"></div>
@@ -84,10 +84,23 @@
 
       <hr class="divider">
 
+      <!-- Atlanta -->
+      <div class="city-header">
+        <span class="city-title">Atlanta ☕︎</span>
+        <button class="map-toggle" onclick="toggleMapSection('atlanta', this)">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="atlanta-map">
+        <div id="atlanta-leaflet"></div>
+      </div>
+
+      <p class="region-note">I will leave you in the hands of "the Atlanta Coffee Shops project"</p>
+
+      <hr class="divider">
+
       <!-- India -->
       <div class="city-header">
         <span class="city-title">India ☕︎</span>
-        <button class="map-toggle" onclick="toggleIndiaMap()">Hide Map</button>
+        <button class="map-toggle" onclick="toggleMapSection('india', this)">Hide Map</button>
       </div>
       <div class="map-wrap" id="india-map">
         <div id="india-leaflet"></div>
@@ -193,14 +206,12 @@
       });
     });
 
-    function toggleMap() {
-      const wrap = document.getElementById('seattle-map');
-      const btns = document.querySelectorAll('.map-toggle');
-      const hidden = wrap.style.display === 'none';
-      wrap.style.display = hidden ? 'block' : 'none';
-      btns[0].textContent = hidden ? 'Hide Map' : 'Show Map';
-      if (hidden) map.invalidateSize();
-    }
+    // Atlanta map (places coming soon)
+    const atlantaMap = L.map('atlanta-leaflet').setView([33.7490, -84.3880], 11);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(atlantaMap);
 
     // India map
     const indiaChains = [
@@ -262,13 +273,14 @@
       });
     });
 
-    function toggleIndiaMap() {
-      const wrap = document.getElementById('india-map');
-      const btns = document.querySelectorAll('.map-toggle');
+    const mapsByCity = { seattle: map, atlanta: atlantaMap, india: indiaMap };
+
+    function toggleMapSection(city, btn) {
+      const wrap = document.getElementById(city + '-map');
       const hidden = wrap.style.display === 'none';
       wrap.style.display = hidden ? 'block' : 'none';
-      btns[1].textContent = hidden ? 'Hide Map' : 'Show Map';
-      if (hidden) indiaMap.invalidateSize();
+      btn.textContent = hidden ? 'Hide Map' : 'Show Map';
+      if (hidden) mapsByCity[city].invalidateSize();
     }
 
     function applyTheme(dark) {
@@ -292,7 +304,7 @@
         document.querySelectorAll('h1, p').forEach(el => el.style.color = '#d1d5db');
         document.querySelectorAll('.sub-city').forEach(el => el.style.color = '#f9fafb');
         document.querySelectorAll('.place-list li').forEach(el => el.style.color = '#d1d5db');
-        document.querySelector('.divider').style.borderColor = '#374151';
+        document.querySelectorAll('.divider').forEach(el => el.style.borderColor = '#374151');
         cityTitles.forEach(el => el.style.color = '#f9fafb');
         toggleBtns.forEach(el => { el.style.borderColor = '#4b5563'; el.style.color = '#9ca3af'; });
         document.querySelector('.subtitle').style.color = '#9ca3af';
@@ -310,7 +322,7 @@
         document.querySelectorAll('p').forEach(el => el.style.color = '#374151');
         document.querySelectorAll('.sub-city').forEach(el => el.style.color = '#111827');
         document.querySelectorAll('.place-list li').forEach(el => el.style.color = '#374151');
-        document.querySelector('.divider').style.borderColor = '#e5e7eb';
+        document.querySelectorAll('.divider').forEach(el => el.style.borderColor = '#e5e7eb');
         cityTitles.forEach(el => el.style.color = '#111827');
         toggleBtns.forEach(el => { el.style.borderColor = '#d1d5db'; el.style.color = '#6b7280'; });
         document.querySelector('.subtitle').style.color = '#6b7280';
