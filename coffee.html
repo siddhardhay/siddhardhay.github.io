@@ -29,7 +29,7 @@
     .map-toggle { background: none; border: 1px solid #d1d5db; border-radius: 6px; padding: 3px 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; font-family: 'Titillium Web', sans-serif; }
     .map-toggle:hover { background: #f3f4f6; }
     .map-wrap { margin-bottom: 18px; }
-    #seattle-leaflet, #boston-leaflet, #providence-leaflet, #atlanta-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
+    #seattle-leaflet, #boston-leaflet, #providence-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
     .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
     .region-note { font-style: italic; color: #6b7280; font-size: 0.93rem; margin-bottom: 18px; line-height: 1.7; }
     .sub-city { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 20px 0 8px; }
@@ -139,9 +139,6 @@
       <!-- Atlanta -->
       <div class="city-header">
         <span class="city-title">Atlanta ☕︎</span>
-      </div>
-      <div class="map-wrap" id="atlanta-map">
-        <div id="atlanta-leaflet"></div>
       </div>
 
       <p class="region-note">I will leave you in the hands of "<a href="https://www.atlantacoffeeshops.com/atlanta-coffee-map" target="_blank">the Atlanta Coffee Shops project</a>"</p>
@@ -418,13 +415,6 @@
       });
     });
 
-    // Atlanta map (places coming soon)
-    const atlantaMap = L.map('atlanta-leaflet').setView([33.7490, -84.3880], 11);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(atlantaMap);
-
     // India map
     const indiaChains = [
       {
@@ -485,7 +475,7 @@
       });
     });
 
-    const mapsByCity = { seattle: map, boston: bostonMap, providence: providenceMap, atlanta: atlantaMap, india: indiaMap };
+    const mapsByCity = { seattle: map, boston: bostonMap, providence: providenceMap, india: indiaMap };
 
     function toggleMapSection(city, btn) {
       const wrap = document.getElementById(city + '-map');
