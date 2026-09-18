@@ -29,7 +29,7 @@
     .map-toggle { background: none; border: 1px solid #d1d5db; border-radius: 6px; padding: 3px 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; font-family: 'Titillium Web', sans-serif; }
     .map-toggle:hover { background: #f3f4f6; }
     .map-wrap { margin-bottom: 18px; }
-    #seattle-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
+    #seattle-leaflet, #boston-leaflet, #providence-leaflet, #atlanta-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
     .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
     .region-note { font-style: italic; color: #6b7280; font-size: 0.93rem; margin-bottom: 18px; line-height: 1.7; }
     .sub-city { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 20px 0 8px; }
@@ -81,6 +81,58 @@
       <p><span class="dot" style="background:#2980b9;"></span><a href="https://5stonescoffeeco.com/" target="_blank">Five Stones</a> in Redmond will make you a cappuccino freddo, which is not something you usually see.</p>
 
       <p><span class="dot" style="background:#16a085;"></span><a href="https://www.adasbooks.com/" target="_blank">Ada's Technical Books &amp; Cafe</a> (also in Capitol Hill) and <span class="dot" style="background:#d35400;"></span><a href="https://santocoffee.co/" target="_blank">Santo</a> (a bit north of the U-District) are good. <span class="dot" style="background:#c0392b;"></span><a href="https://www.victrolacoffee.com/" target="_blank">Victrola</a> is also recommended.</p>
+
+      <hr class="divider">
+
+      <!-- Boston -->
+      <div class="city-header">
+        <span class="city-title">Boston ☕︎</span>
+        <button class="map-toggle" onclick="toggleMapSection('boston', this)">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="boston-map">
+        <div id="boston-leaflet"></div>
+      </div>
+
+      <p><span class="dot" style="background:#e74c3c;"></span><a href="https://www.ogawacoffeeusa.com/" target="_blank">Ogawa Coffee</a> makes what might be the best cappuccino in Boston, with baristas who turn out elaborate latte art.</p>
+
+      <p><span class="dot" style="background:#27ae60;"></span><a href="http://www.georgehowellcoffee.com/the-godfrey-hotel/" target="_blank">George Howell Coffee</a>, inside the Godfrey Hotel, is well-balanced and well-poured.</p>
+
+      <p><span class="dot" style="background:#f39c12;"></span><a href="https://bakeybabka.com/" target="_blank">Bakey</a> is a bakery-and-coffee shop known for its babka, pulling shots with Caffe Umbria beans shipped in from Seattle.</p>
+
+      <p>In Cambridge, <span class="dot" style="background:#8e44ad;"></span><a href="http://www.barismo.com/" target="_blank">Barismo</a> and <span class="dot" style="background:#2980b9;"></span><a href="https://www.broadsheetcoffee.com/" target="_blank">Broadsheet</a> are both solid options.</p>
+
+      <p>In East Cambridge, <span class="dot" style="background:#16a085;"></span><a href="https://www.instagram.com/honeyscambridge/" target="_blank">Honey's</a> (formerly Curio) pairs good coffee with liège-style waffles, and <span class="dot" style="background:#d35400;"></span><a href="http://www.elmendorfbaking.com/" target="_blank">Elmendorf</a> is a solid bakery and baking supply shop.</p>
+
+      <p>Near the Stata Center, <span class="dot" style="background:#c0392b;"></span><a href="https://www.areafour.com/location/area-four-a4-cafe/" target="_blank">Area Four</a> and <span class="dot" style="background:#2ecc71;"></span><a href="https://www.vestercafe.com/" target="_blank">Vester</a> are both good options.</p>
+
+      <p><span class="dot" style="background:#e67e22;"></span><a href="https://pavementcoffeehouse.com/" target="_blank">Pavement</a> has locations in Back Bay and Harvard Square.</p>
+
+      <p>In Dorchester, <span class="dot" style="background:#9b59b6;"></span><a href="https://flatblackcoffee.com/" target="_blank">Flat Black</a>, run by Australians, serves flat whites.</p>
+
+      <hr class="divider">
+
+      <!-- Providence -->
+      <div class="city-header">
+        <span class="city-title">Providence ☕︎</span>
+        <button class="map-toggle" onclick="toggleMapSection('providence', this)">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="providence-map">
+        <div id="providence-leaflet"></div>
+      </div>
+
+      <p><span class="dot" style="background:#3498db;"></span><a href="https://www.boltcoffeeco.com/" target="_blank">Bolt Coffee</a> has a nice location inside the RISD Museum, near Brown.</p>
+
+      <p><span class="dot" style="background:#1abc9c;"></span><a href="http://www.ceremonypvd.com/onlineorder" target="_blank">Ceremony</a> is primarily tea-focused, but still worth a visit.</p>
+
+      <p>On Wickenden St., <span class="dot" style="background:#e74c3c;"></span><a href="https://www.thecoffeeexchange.com/" target="_blank">Coffee Exchange</a> is a great local roaster with an extensive selection — the light roast espresso is recommended — and <span class="dot" style="background:#f39c12;"></span><a href="https://www.brownbeecoffee.com/" target="_blank">Brown Bee Coffee</a> is a promising newcomer with a strong pastry program.</p>
+
+      <p><span class="dot" style="background:#8e44ad;"></span><a href="https://elliesprov.com/" target="_blank">Ellie's</a> is a good downtown option (there's also a Bolt location downtown).</p>
+
+      <p><span class="dot" style="background:#27ae60;"></span><a href="https://sevenstarsbakery.com/" target="_blank">Seven Stars Bakery</a> pours George Howell Coffee alongside good pastries and bread.</p>
+
+      <p>In Wayland Square, <span class="dot" style="background:#d35400;"></span><a href="https://www.madrideuropeanbakery.com/" target="_blank">Madrid</a> has great pastries and decent coffee.</p>
+
+      <p>In Riverside, along the East Bay Bike Path, <span class="dot" style="background:#2980b9;"></span><a href="https://www.borealiscoffee.com/" target="_blank">Borealis</a> is a good stop.</p>
 
       <hr class="divider">
 
@@ -205,6 +257,167 @@
       });
     });
 
+    // Boston map
+    const bostonChains = [
+      {
+        name: "Ogawa Coffee", color: "#e74c3c", url: "https://www.ogawacoffeeusa.com/",
+        locations: [
+          { label: "Downtown Crossing", lat: 42.3555, lng: -71.0605 }
+        ]
+      },
+      {
+        name: "George Howell Coffee", color: "#27ae60", url: "http://www.georgehowellcoffee.com/the-godfrey-hotel/",
+        locations: [
+          { label: "Godfrey Hotel", lat: 42.3538, lng: -71.0616 }
+        ]
+      },
+      {
+        name: "Bakey", color: "#f39c12", url: "https://bakeybabka.com/",
+        locations: [
+          { label: "Union Square, Somerville", lat: 42.3781, lng: -71.0954 }
+        ]
+      },
+      {
+        name: "Barismo", color: "#8e44ad", url: "http://www.barismo.com/",
+        locations: [
+          { label: "Arlington", lat: 42.4154, lng: -71.1565 }
+        ]
+      },
+      {
+        name: "Broadsheet Coffee", color: "#2980b9", url: "https://www.broadsheetcoffee.com/",
+        locations: [
+          { label: "Kendall Square, Cambridge", lat: 42.3624, lng: -71.0847 }
+        ]
+      },
+      {
+        name: "Honey's", color: "#16a085", url: "https://www.instagram.com/honeyscambridge/",
+        locations: [
+          { label: "East Cambridge", lat: 42.3672, lng: -71.0862 }
+        ]
+      },
+      {
+        name: "Elmendorf", color: "#d35400", url: "http://www.elmendorfbaking.com/",
+        locations: [
+          { label: "East Cambridge", lat: 42.3701, lng: -71.0827 }
+        ]
+      },
+      {
+        name: "Area Four", color: "#c0392b", url: "https://www.areafour.com/location/area-four-a4-cafe/",
+        locations: [
+          { label: "Kendall Square, Cambridge", lat: 42.3626, lng: -71.0843 }
+        ]
+      },
+      {
+        name: "Vester", color: "#2ecc71", url: "https://www.vestercafe.com/",
+        locations: [
+          { label: "Kendall Square, Cambridge", lat: 42.3626, lng: -71.0895 }
+        ]
+      },
+      {
+        name: "Pavement", color: "#e67e22", url: "https://pavementcoffeehouse.com/",
+        locations: [
+          { label: "Back Bay", lat: 42.3503, lng: -71.0810 },
+          { label: "Harvard Square", lat: 42.3736, lng: -71.1190 }
+        ]
+      },
+      {
+        name: "Flat Black", color: "#9b59b6", url: "https://flatblackcoffee.com/",
+        locations: [
+          { label: "Dorchester", lat: 42.2915, lng: -71.0656 }
+        ]
+      }
+    ];
+
+    const bostonMap = L.map('boston-leaflet').setView([42.365, -71.09], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(bostonMap);
+
+    bostonChains.forEach(chain => {
+      chain.locations.forEach(loc => {
+        const marker = L.circleMarker([loc.lat, loc.lng], {
+          radius: 8, color: chain.color, fillColor: chain.color,
+          fillOpacity: 0.85, weight: 2
+        }).addTo(bostonMap);
+        marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
+          direction: 'top', offset: [0, -6]
+        });
+        marker.bindPopup(`<a href="${chain.url}" target="_blank"><strong>${chain.name}</strong></a><br>${loc.label}`);
+      });
+    });
+
+    // Providence map
+    const providenceChains = [
+      {
+        name: "Bolt Coffee", color: "#3498db", url: "https://www.boltcoffeeco.com/",
+        locations: [
+          { label: "RISD Museum", lat: 41.8259, lng: -71.4025 }
+        ]
+      },
+      {
+        name: "Ceremony", color: "#1abc9c", url: "http://www.ceremonypvd.com/onlineorder",
+        locations: [
+          { label: "Providence", lat: 41.8195, lng: -71.3958 }
+        ]
+      },
+      {
+        name: "Coffee Exchange", color: "#e74c3c", url: "https://www.thecoffeeexchange.com/",
+        locations: [
+          { label: "Wickenden St.", lat: 41.8177, lng: -71.3958 }
+        ]
+      },
+      {
+        name: "Brown Bee Coffee", color: "#f39c12", url: "https://www.brownbeecoffee.com/",
+        locations: [
+          { label: "Wickenden St.", lat: 41.8180, lng: -71.3960 }
+        ]
+      },
+      {
+        name: "Ellie's", color: "#8e44ad", url: "https://elliesprov.com/",
+        locations: [
+          { label: "Downtown", lat: 41.8236, lng: -71.4128 }
+        ]
+      },
+      {
+        name: "Seven Stars Bakery", color: "#27ae60", url: "https://sevenstarsbakery.com/",
+        locations: [
+          { label: "Hope Street", lat: 41.8385, lng: -71.4008 }
+        ]
+      },
+      {
+        name: "Madrid", color: "#d35400", url: "https://www.madrideuropeanbakery.com/",
+        locations: [
+          { label: "Wayland Square", lat: 41.8271, lng: -71.3919 }
+        ]
+      },
+      {
+        name: "Borealis", color: "#2980b9", url: "https://www.borealiscoffee.com/",
+        locations: [
+          { label: "Riverside", lat: 41.7377, lng: -71.3486 }
+        ]
+      }
+    ];
+
+    const providenceMap = L.map('providence-leaflet').setView([41.81, -71.40], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(providenceMap);
+
+    providenceChains.forEach(chain => {
+      chain.locations.forEach(loc => {
+        const marker = L.circleMarker([loc.lat, loc.lng], {
+          radius: 8, color: chain.color, fillColor: chain.color,
+          fillOpacity: 0.85, weight: 2
+        }).addTo(providenceMap);
+        marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
+          direction: 'top', offset: [0, -6]
+        });
+        marker.bindPopup(`<a href="${chain.url}" target="_blank"><strong>${chain.name}</strong></a><br>${loc.label}`);
+      });
+    });
+
     // Atlanta map (places coming soon)
     const atlantaMap = L.map('atlanta-leaflet').setView([33.7490, -84.3880], 11);
 
@@ -272,7 +485,7 @@
       });
     });
 
-    const mapsByCity = { seattle: map, atlanta: atlantaMap, india: indiaMap };
+    const mapsByCity = { seattle: map, boston: bostonMap, providence: providenceMap, atlanta: atlantaMap, india: indiaMap };
 
     function toggleMapSection(city, btn) {
       const wrap = document.getElementById(city + '-map');
