@@ -456,7 +456,12 @@
       {
         name: "Dineen Coffee Co", color: "#e74c3c", url: "https://www.dineencoffee.com/",
         locations: [
-          { label: "Yonge & Temperance", lat: 43.6505, lng: -79.3790 }
+          { label: "Downtown (Yonge & Temperance)",     lat: 43.6511, lng: -79.3791 },
+          { label: "Financial District – Commerce Court", lat: 43.6482, lng: -79.3795 },
+          { label: "Financial District – King St W",    lat: 43.6479, lng: -79.3856 },
+          { label: "South Core – CIBC Square",          lat: 43.6442, lng: -79.3774 },
+          { label: "Leslieville – Gerrard St E (Outpost)", lat: 43.6691, lng: -79.3368 },
+          { label: "North York – York Mills Rd",        lat: 43.7473, lng: -79.3849 }
         ]
       },
       {
@@ -467,7 +472,7 @@
       }
     ];
 
-    const torontoMap = L.map('toronto-leaflet').setView([43.655, -79.38], 14);
+    const torontoMap = L.map('toronto-leaflet').setView([43.69, -79.37], 11);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
