@@ -29,7 +29,7 @@
     .map-toggle { background: none; border: 1px solid #d1d5db; border-radius: 6px; padding: 3px 10px; font-size: 0.85rem; color: #6b7280; cursor: pointer; font-family: 'Titillium Web', sans-serif; }
     .map-toggle:hover { background: #f3f4f6; }
     .map-wrap { margin-bottom: 18px; }
-    #seattle-leaflet, #boston-leaflet, #providence-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
+    #seattle-leaflet, #boston-leaflet, #providence-leaflet, #toronto-leaflet, #india-leaflet { width: 100%; height: 320px; border-radius: 8px; z-index: 1; }
     .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
     .region-note { font-style: italic; color: #6b7280; font-size: 0.93rem; margin-bottom: 18px; line-height: 1.7; }
     .sub-city { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 20px 0 8px; }
@@ -105,7 +105,7 @@
 
       <p>Near the Stata Center, <span class="dot" style="background:#c0392b;"></span><a href="https://www.areafour.com/location/area-four-a4-cafe/" target="_blank">Area Four</a> and <span class="dot" style="background:#2ecc71;"></span><a href="https://www.vestercafe.com/" target="_blank">Vester</a> are both good options.</p>
 
-      <p><span class="dot" style="background:#e67e22;"></span><a href="https://pavementcoffeehouse.com/" target="_blank">Pavement</a> has locations in Back Bay and Harvard Square.</p>
+      <p><span class="dot" style="background:#e67e22;"></span><a href="https://pavementcoffeehouse.com/" target="_blank">Pavement</a> has grown into a small local chain, with locations scattered across Boston, Cambridge, and Medford — Newbury Street and Harvard Square are good bets.</p>
 
       <p>In Dorchester, <span class="dot" style="background:#9b59b6;"></span><a href="https://flatblackcoffee.com/" target="_blank">Flat Black</a>, run by Australians, serves flat whites.</p>
 
@@ -120,19 +120,32 @@
         <div id="providence-leaflet"></div>
       </div>
 
-      <p><span class="dot" style="background:#3498db;"></span><a href="https://www.boltcoffeeco.com/" target="_blank">Bolt Coffee</a> has a nice location inside the RISD Museum, near Brown.</p>
+      <p><span class="dot" style="background:#3498db;"></span><a href="https://www.boltcoffeeco.com/" target="_blank">Bolt Coffee</a> has a nice location inside the RISD Museum, near Brown (there's also a downtown location inside the Dean Hotel).</p>
 
       <p><span class="dot" style="background:#1abc9c;"></span><a href="http://www.ceremonypvd.com/onlineorder" target="_blank">Ceremony</a> is primarily tea-focused, but still worth a visit.</p>
 
-      <p>On Wickenden St., <span class="dot" style="background:#e74c3c;"></span><a href="https://www.thecoffeeexchange.com/" target="_blank">Coffee Exchange</a> is a great local roaster with an extensive selection — the light roast espresso is recommended — and <span class="dot" style="background:#f39c12;"></span><a href="https://www.brownbeecoffee.com/" target="_blank">Brown Bee Coffee</a> is a promising newcomer with a strong pastry program.</p>
+      <p>On Wickenden St., <span class="dot" style="background:#e74c3c;"></span><a href="https://www.thecoffeeexchange.com/" target="_blank">Coffee Exchange</a> is a great local roaster with an extensive selection — the light roast espresso is recommended. On Benefit St., <span class="dot" style="background:#f39c12;"></span><a href="https://www.brownbeecoffee.com/" target="_blank">Brown Bee Coffee</a> is a promising newcomer with a strong pastry program.</p>
 
-      <p><span class="dot" style="background:#8e44ad;"></span><a href="https://elliesprov.com/" target="_blank">Ellie's</a> is a good downtown option (there's also a Bolt location downtown).</p>
+      <p><span class="dot" style="background:#8e44ad;"></span><a href="https://elliesprov.com/" target="_blank">Ellie's</a> is a good downtown option.</p>
 
       <p><span class="dot" style="background:#27ae60;"></span><a href="https://sevenstarsbakery.com/" target="_blank">Seven Stars Bakery</a> pours George Howell Coffee alongside good pastries and bread.</p>
 
       <p>In Wayland Square, <span class="dot" style="background:#d35400;"></span><a href="https://www.madrideuropeanbakery.com/" target="_blank">Madrid</a> has great pastries and decent coffee.</p>
 
       <p>In Riverside, along the East Bay Bike Path, <span class="dot" style="background:#2980b9;"></span><a href="https://www.borealiscoffee.com/" target="_blank">Borealis</a> is a good stop.</p>
+
+      <hr class="divider">
+
+      <!-- Toronto -->
+      <div class="city-header">
+        <span class="city-title">Toronto ☕︎</span>
+        <button class="map-toggle" onclick="toggleMapSection('toronto', this)">Hide Map</button>
+      </div>
+      <div class="map-wrap" id="toronto-map">
+        <div id="toronto-leaflet"></div>
+      </div>
+
+      <p><span class="dot" style="background:#e74c3c;"></span><a href="https://www.dineencoffee.com/" target="_blank">Dineen Coffee Co</a> and <span class="dot" style="background:#2980b9;"></span><a href="https://www.bulldogcoffee.com/" target="_blank">Bulldog Coffee</a> are good options in downtown Toronto. Bulldog offers a (presumably Instagram-optimized) "rainbow latte", which I didn't bother with.</p>
 
       <hr class="divider">
 
@@ -259,25 +272,33 @@
       {
         name: "Ogawa Coffee", color: "#e74c3c", url: "https://www.ogawacoffeeusa.com/",
         locations: [
-          { label: "Downtown Crossing", lat: 42.3555, lng: -71.0605 }
+          { label: "Downtown Crossing", lat: 42.3568, lng: -71.0581 }
         ]
       },
       {
         name: "George Howell Coffee", color: "#27ae60", url: "http://www.georgehowellcoffee.com/the-godfrey-hotel/",
         locations: [
-          { label: "Godfrey Hotel", lat: 42.3538, lng: -71.0616 }
+          { label: "The Godfrey DTX", lat: 42.3547, lng: -71.0615 },
+          { label: "Boston Public Market", lat: 42.3621, lng: -71.0575 },
+          { label: "Lyrik, Newbury St", lat: 42.3475, lng: -71.0885 },
+          { label: "Newtonville", lat: 42.3501, lng: -71.2071 }
         ]
       },
       {
         name: "Bakey", color: "#f39c12", url: "https://bakeybabka.com/",
         locations: [
-          { label: "Union Square, Somerville", lat: 42.3781, lng: -71.0954 }
+          { label: "Downtown (Tremont St)", lat: 42.3545, lng: -71.0633 },
+          { label: "Faneuil Hall", lat: 42.3602, lng: -71.0562 },
+          { label: "Brookline", lat: 42.3445, lng: -71.1255 },
+          { label: "Kendall Square, Cambridge", lat: 42.3617, lng: -71.0848 },
+          { label: "Newton", lat: 42.3309, lng: -71.1915 }
         ]
       },
       {
         name: "Barismo", color: "#8e44ad", url: "http://www.barismo.com/",
         locations: [
-          { label: "Arlington", lat: 42.4154, lng: -71.1565 }
+          { label: "Cambridge", lat: 42.3705, lng: -71.1044 },
+          { label: "Arlington", lat: 42.4054, lng: -71.1415 }
         ]
       },
       {
@@ -289,7 +310,7 @@
       {
         name: "Honey's", color: "#16a085", url: "https://www.instagram.com/honeyscambridge/",
         locations: [
-          { label: "East Cambridge", lat: 42.3672, lng: -71.0862 }
+          { label: "East Cambridge", lat: 42.3716, lng: -71.0835 }
         ]
       },
       {
@@ -301,31 +322,41 @@
       {
         name: "Area Four", color: "#c0392b", url: "https://www.areafour.com/location/area-four-a4-cafe/",
         locations: [
-          { label: "Kendall Square, Cambridge", lat: 42.3626, lng: -71.0843 }
+          { label: "Technology Square (Area Four / A4 Café)", lat: 42.3635, lng: -71.0926 },
+          { label: "One Kendall Square", lat: 42.3626, lng: -71.0876 }
         ]
       },
       {
         name: "Vester", color: "#2ecc71", url: "https://www.vestercafe.com/",
         locations: [
-          { label: "Kendall Square, Cambridge", lat: 42.3626, lng: -71.0895 }
+          { label: "Kendall Square, Cambridge", lat: 42.3636, lng: -71.0886 },
+          { label: "South Boston (CRISPR Therapeutics)", lat: 42.3421, lng: -71.0510 }
         ]
       },
       {
         name: "Pavement", color: "#e67e22", url: "https://pavementcoffeehouse.com/",
         locations: [
-          { label: "Back Bay", lat: 42.3503, lng: -71.0810 },
-          { label: "Harvard Square", lat: 42.3736, lng: -71.1190 }
+          { label: "Allston", lat: 42.3503, lng: -71.1318 },
+          { label: "Berklee", lat: 42.3468, lng: -71.0884 },
+          { label: "Boston University", lat: 42.3498, lng: -71.1072 },
+          { label: "Brighton", lat: 42.3627, lng: -71.1404 },
+          { label: "Fenway", lat: 42.3442, lng: -71.0983 },
+          { label: "Harvard Square, Cambridge", lat: 42.3730, lng: -71.1188 },
+          { label: "Lesley University, Cambridge", lat: 42.3820, lng: -71.1199 },
+          { label: "Newbury Street", lat: 42.3489, lng: -71.0844 },
+          { label: "Symphony", lat: 42.3417, lng: -71.0871 },
+          { label: "Tufts University, Medford", lat: 42.4079, lng: -71.1164 }
         ]
       },
       {
         name: "Flat Black", color: "#9b59b6", url: "https://flatblackcoffee.com/",
         locations: [
-          { label: "Dorchester", lat: 42.2915, lng: -71.0656 }
+          { label: "Lower Mills, Dorchester", lat: 42.2724, lng: -71.0683 }
         ]
       }
     ];
 
-    const bostonMap = L.map('boston-leaflet').setView([42.365, -71.09], 12);
+    const bostonMap = L.map('boston-leaflet').setView([42.35, -71.10], 11);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -349,54 +380,59 @@
       {
         name: "Bolt Coffee", color: "#3498db", url: "https://www.boltcoffeeco.com/",
         locations: [
-          { label: "RISD Museum", lat: 41.8259, lng: -71.4025 }
+          { label: "RISD Museum", lat: 41.8272, lng: -71.4076 },
+          { label: "Downtown (Dean Hotel)", lat: 41.8232, lng: -71.4158 }
         ]
       },
       {
         name: "Ceremony", color: "#1abc9c", url: "http://www.ceremonypvd.com/onlineorder",
         locations: [
-          { label: "Providence", lat: 41.8195, lng: -71.3958 }
+          { label: "Brook Street", lat: 41.8287, lng: -71.3996 },
+          { label: "South Main Street", lat: 41.8241, lng: -71.4071 }
         ]
       },
       {
         name: "Coffee Exchange", color: "#e74c3c", url: "https://www.thecoffeeexchange.com/",
         locations: [
-          { label: "Wickenden St.", lat: 41.8177, lng: -71.3958 }
+          { label: "Wickenden St.", lat: 41.8193, lng: -71.3991 }
         ]
       },
       {
         name: "Brown Bee Coffee", color: "#f39c12", url: "https://www.brownbeecoffee.com/",
         locations: [
-          { label: "Wickenden St.", lat: 41.8180, lng: -71.3960 }
+          { label: "Benefit St.", lat: 41.8202, lng: -71.4017 }
         ]
       },
       {
         name: "Ellie's", color: "#8e44ad", url: "https://elliesprov.com/",
         locations: [
-          { label: "Downtown", lat: 41.8236, lng: -71.4128 }
+          { label: "Downtown (Westminster St)", lat: 41.8227, lng: -71.4127 }
         ]
       },
       {
         name: "Seven Stars Bakery", color: "#27ae60", url: "https://sevenstarsbakery.com/",
         locations: [
-          { label: "Hope Street", lat: 41.8385, lng: -71.4008 }
+          { label: "Hope Street", lat: 41.8496, lng: -71.3951 },
+          { label: "Broadway (West Side)", lat: 41.8197, lng: -71.4291 },
+          { label: "Point Street", lat: 41.8167, lng: -71.4077 },
+          { label: "East Providence (Rumford)", lat: 41.8401, lng: -71.3543 }
         ]
       },
       {
         name: "Madrid", color: "#d35400", url: "https://www.madrideuropeanbakery.com/",
         locations: [
-          { label: "Wayland Square", lat: 41.8271, lng: -71.3919 }
+          { label: "Wayland Square", lat: 41.8297, lng: -71.3879 }
         ]
       },
       {
         name: "Borealis", color: "#2980b9", url: "https://www.borealiscoffee.com/",
         locations: [
-          { label: "Riverside", lat: 41.7377, lng: -71.3486 }
+          { label: "Riverside", lat: 41.7714, lng: -71.3620 }
         ]
       }
     ];
 
-    const providenceMap = L.map('providence-leaflet').setView([41.81, -71.40], 12);
+    const providenceMap = L.map('providence-leaflet').setView([41.81, -71.39], 11);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -408,6 +444,41 @@
           radius: 8, color: chain.color, fillColor: chain.color,
           fillOpacity: 0.85, weight: 2
         }).addTo(providenceMap);
+        marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
+          direction: 'top', offset: [0, -6]
+        });
+        marker.bindPopup(`<a href="${chain.url}" target="_blank"><strong>${chain.name}</strong></a><br>${loc.label}`);
+      });
+    });
+
+    // Toronto map
+    const torontoChains = [
+      {
+        name: "Dineen Coffee Co", color: "#e74c3c", url: "https://www.dineencoffee.com/",
+        locations: [
+          { label: "Yonge & Temperance", lat: 43.6505, lng: -79.3790 }
+        ]
+      },
+      {
+        name: "Bulldog Coffee", color: "#2980b9", url: "https://www.bulldogcoffee.com/",
+        locations: [
+          { label: "Church & Granby", lat: 43.6610, lng: -79.3797 }
+        ]
+      }
+    ];
+
+    const torontoMap = L.map('toronto-leaflet').setView([43.655, -79.38], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(torontoMap);
+
+    torontoChains.forEach(chain => {
+      chain.locations.forEach(loc => {
+        const marker = L.circleMarker([loc.lat, loc.lng], {
+          radius: 8, color: chain.color, fillColor: chain.color,
+          fillOpacity: 0.85, weight: 2
+        }).addTo(torontoMap);
         marker.bindTooltip(`<strong>${chain.name}</strong><br>${loc.label}`, {
           direction: 'top', offset: [0, -6]
         });
@@ -475,7 +546,7 @@
       });
     });
 
-    const mapsByCity = { seattle: map, boston: bostonMap, providence: providenceMap, india: indiaMap };
+    const mapsByCity = { seattle: map, boston: bostonMap, providence: providenceMap, toronto: torontoMap, india: indiaMap };
 
     function toggleMapSection(city, btn) {
       const wrap = document.getElementById(city + '-map');
